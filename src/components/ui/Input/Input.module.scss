@@ -8,13 +8,13 @@
 
 .inputPrimary {
   height: 48px;
-  background: #f6f6f6;
+  background: var(--color-bg-input);
   color: var(--color-text-secondary);
   padding: 0 52px 0 20px;
 }
 
 .inputPrimary::placeholder {
-  color: #9f9f9f;
+  color:var(---color-neutral-400);
 }
 
 .inputSecondary {

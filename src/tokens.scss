@@ -23,10 +23,14 @@
   --color-neutral-900: #271c47;
   --color-neutral-700: #3f3f40;
   --color-neutral-400: #9f9f9f;
+  --color-neutral-100: #f4f4f4;
+  --color-surface-input: #f6f5f2;
   --color-white: #ffffff;
 
   /* Semantic aliases */
   --color-bg-page: var(--color-white);
+  --color-bg-subtle: var(--color-neutral-100);
+  --color-bg-input: var(--color-surface-input);
   --color-bg-highlight: var(--color-accent-400);
   --color-text-primary: var(--color-neutral-900);
   --color-text-secondary: var(--color-neutral-700);
