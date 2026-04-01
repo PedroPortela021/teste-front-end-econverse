@@ -35,7 +35,6 @@
 }
 
 .buttonSecondary {
-  background: transparent;
+  background: var(--color-brand-primary);
   color: var(--color-text-on-dark);
-  border-color: var(--color-text-on-dark);
 }
