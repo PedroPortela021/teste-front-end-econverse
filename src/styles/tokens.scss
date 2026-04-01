@@ -1,0 +1,38 @@
+:root {
+  /* Font families */
+  --font-family-base: 'Poppins', sans-serif;
+  --font-family-heading: 'Poppins', sans-serif;
+
+  /* Font sizes */
+  --font-size-12: 0.75rem;
+  --font-size-14: 0.875rem;
+  --font-size-16: 1rem;
+  --font-size-20: 1.25rem;
+  --font-size-32: 2rem;
+  --font-size-40: 2.5rem;
+  --font-size-48: 3rem;
+
+  /* Line heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+
+  /* Colors */
+  --color-primary-500: #3442b5;
+  --color-primary-700: #3019b2;
+  --color-accent-400: #f7ca11;
+  --color-neutral-900: #271c47;
+  --color-neutral-700: #3f3f40;
+  --color-neutral-400: #9f9f9f;
+  --color-white: #ffffff;
+
+  /* Semantic aliases */
+  --color-bg-page: var(--color-white);
+  --color-bg-highlight: var(--color-accent-400);
+  --color-text-primary: var(--color-neutral-900);
+  --color-text-secondary: var(--color-neutral-700);
+  --color-text-muted: var(--color-neutral-400);
+  --color-text-on-dark: var(--color-white);
+  --color-border-default: var(--color-neutral-400);
+  --color-brand-primary: var(--color-primary-500);
+  --color-brand-strong: var(--color-primary-700);
+}
