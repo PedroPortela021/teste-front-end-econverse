@@ -6,10 +6,17 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+package-lock.json
 
 node_modules
 dist
 dist-ssr
+coverage
+.vite
+.vitest
+.eslintcache
+*.tsbuildinfo
+.tmp
 *.local
 
 # Editor directories and files
@@ -22,3 +29,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
