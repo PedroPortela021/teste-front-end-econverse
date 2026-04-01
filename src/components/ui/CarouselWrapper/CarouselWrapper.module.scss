@@ -1,0 +1,81 @@
+/* Distância dos chevrons além da borda da faixa rolável (fora do “corpo” do carrossel). */
+$nav-outset: 60px;
+
+.root {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+}
+
+.viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 8px;
+  padding: 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.track {
+  display: flex;
+  flex-direction: row;
+  gap: 22px;
+  padding: 8px 4px 16px;
+}
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  translate: 0 -50%;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-white);
+  box-shadow: 0 2px 12px rgb(39 28 71 / 14%);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.navButton:hover:not(:disabled) {
+  color: var(--color-text-secondary);
+  background: var(--color-neutral-100);
+}
+
+.navButton:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+}
+
+.navButton:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.navPrev {
+  left: -$nav-outset;
+}
+
+.navNext {
+  right: -$nav-outset;
+}
+
+.navIcon {
+  width: 20px;
+  height: 20px;
+}
