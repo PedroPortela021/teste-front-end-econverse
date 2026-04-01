@@ -1,83 +1,22 @@
 .home {
-  max-width: 1040px;
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 48px 20px;
+  padding: 0 20px;
 }
 
-.hero {
-  background: linear-gradient(140deg, var(--color-primary-700), var(--color-primary-500));
-  color: var(--color-text-on-dark);
-  padding: 40px;
-  border-radius: 18px;
+.section {
+  padding: 48px 0;
 }
 
-.kicker {
-  margin: 0 0 8px;
-  color: var(--color-brand-primary);
-  font-size: var(--font-size-14);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.hero h1 {
-  margin: 0;
-  font-family: var(--font-family-heading);
-  font-size: var(--font-size-40);
-  line-height: var(--line-height-tight);
-  color: var(--color-text-on-dark);
-}
-
-.benefitCard h2 {
-  margin: 0 0 16px;
-  font-family: var(--font-family-heading);
-  font-size: var(--font-size-20);
-  line-height: var(--line-height-tight);
-  color: var(--color-brand-strong);
-}
-
-.heroText {
-  margin: 16px 0 0;
-  max-width: 60ch;
-  color: var(--color-text-on-dark);
-}
-
-.ctaGroup {
+.fullWidthSection {
+  width: 100%;
+  min-height: 490px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 24px;
-}
-
-.btn {
-  border: 0;
-  border-radius: 10px;
-  padding: 12px 18px;
-  font-size: var(--font-size-14);
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.btnPrimary {
-  background: var(--color-bg-highlight);
-  color: var(--color-text-primary);
-}
-
-.btnSecondary {
-  background: transparent;
-  color: var(--color-text-on-dark);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-}
-
-.benefits {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 12px;
-  margin-top: 24px;
-}
-
-.benefitCard {
-  border: 1px solid var(--color-border-default);
-  border-radius: 12px;
-  padding: 16px;
+  align-items: center;
+  background: var(--color-surface-dark, #111827);
 }
