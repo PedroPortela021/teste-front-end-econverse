@@ -1,57 +1,15 @@
-import './App.scss'
-
-const colorTokens = [
-  { name: 'Primaria 500', value: '#3442B5' },
-  { name: 'Primaria 700', value: '#3019B2' },
-  { name: 'Accent 400', value: '#F7CA11' },
-  { name: 'Neutral 900', value: '#271C47' },
-  { name: 'Neutral 700', value: '#3F3F40' },
-  { name: 'Neutral 400', value: '#9F9F9F' },
-  { name: 'White', value: '#FFFFFF' },
-]
-
-const fontScale = [
-  { px: 12, rem: 0.75 },
-  { px: 14, rem: 0.875 },
-  { px: 16, rem: 1 },
-  { px: 20, rem: 1.25 },
-  { px: 32, rem: 2 },
-  { px: 40, rem: 2.5 },
-  { px: 48, rem: 3 },
-]
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { DesignTokensPage } from './pages/desing/Design.tsx'
+import { Home } from './pages/home/Home.tsx'
 
 function App() {
   return (
-    <main className="style-guide">
-      <header>
-        <p className="kicker">Design tokens</p>
-        <h1>Cores e tipografia do projeto</h1>
-      </header>
-
-      <section className="section">
-        <h2>Fonte: Poppins</h2>
-        <div className="font-grid">
-          {fontScale.map((size) => (
-            <p key={size.px} style={{ fontSize: `${size.rem}rem` }}>
-              Poppins {size.px}px ({size.rem}rem)
-            </p>
-          ))}
-        </div>
-      </section>
-
-      <section className="section">
-        <h2>Paleta de cores</h2>
-        <div className="color-grid">
-          {colorTokens.map((token) => (
-            <article key={token.value} className="swatch">
-              <div className="sample" style={{ backgroundColor: token.value }} />
-              <p>{token.name}</p>
-              <code>{token.value}</code>
-            </article>
-          ))}
-        </div>
-      </section>
-    </main>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/desing" element={<DesignTokensPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
