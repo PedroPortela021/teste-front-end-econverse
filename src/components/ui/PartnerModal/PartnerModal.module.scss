@@ -1,0 +1,120 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgb(0 0 0 / 68%);
+}
+
+.panel {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 560px;
+  max-height: min(90vh, 640px);
+  overflow-y: auto;
+  background: var(--color-white);
+  border-radius: 12px;
+  box-shadow: 0 16px 48px rgb(39 28 71 / 18%);
+  padding: 0;
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  background: rgb(255 255 255 / 90%);
+  color: var(--color-text-secondary);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.close:hover {
+  background: var(--color-neutral-100);
+  color: var(--color-text-primary);
+}
+
+.close:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+  max-height: 280px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px 12px 0 0;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 45%);
+  border-radius: 12px 12px 0 0;
+}
+
+.body {
+  padding: 28px 28px 32px;
+}
+
+.title {
+  margin: 0 0 12px;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-24);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.description {
+  margin: 0 0 24px;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-secondary);
+}
+
+.cta {
+  width: 100%;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 8px;
+  background: var(--color-partner-cta);
+  color: var(--color-neutral-900);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-14);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+
+.cta:hover {
+  filter: brightness(1.05);
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+}

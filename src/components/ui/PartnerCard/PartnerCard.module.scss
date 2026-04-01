@@ -1,0 +1,106 @@
+/* Proporção do layout: 634 × 350 */
+.card {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+  aspect-ratio: 634 / 350;
+  width: 100%;
+  border: none;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  scroll-margin: 8px;
+}
+
+.card:focus-visible {
+  outline: 3px solid var(--color-partner-cta);
+  outline-offset: 3px;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1);
+  transition: transform 0.35s ease;
+}
+
+.card:hover .bg {
+  transform: scale(1.04);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 62%);
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 28px 28px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title {
+  margin: 0 0 10px;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-32);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+  color: var(--color-text-on-dark);
+  text-shadow: 0 1px 12px rgb(0 0 0 / 35%);
+}
+
+.description {
+  margin: 0;
+  max-width: 22rem;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-16);
+  font-weight: 400;
+  line-height: var(--line-height-normal);
+  color: var(--color-text-on-dark);
+  text-shadow: 0 1px 8px rgb(0 0 0 / 40%);
+}
+
+.cta {
+  margin-top: 22px;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 8px;
+  background: var(--color-partner-cta);
+  color: var(--color-neutral-900);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-14);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    filter 0.2s ease,
+    transform 0.2s ease;
+}
+
+.cta:hover {
+  filter: brightness(1.05);
+}
+
+.cta:active {
+  transform: translateY(1px);
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 3px;
+}
