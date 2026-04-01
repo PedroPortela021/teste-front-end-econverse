@@ -12,6 +12,15 @@
   scroll-snap-align: start;
 }
 
+.cardInteractive {
+  cursor: pointer;
+}
+
+.cardInteractive:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+}
+
 .imageWrap {
   display: flex;
   align-items: center;

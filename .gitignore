@@ -18,6 +18,7 @@ coverage
 *.tsbuildinfo
 .tmp
 *.local
+vite-env.d.ts
 
 # Editor directories and files
 .vscode/*

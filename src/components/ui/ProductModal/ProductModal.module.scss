@@ -1,0 +1,215 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgb(0 0 0 / 68%);
+}
+
+.panel {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 880px;
+  max-height: min(90vh, 680px);
+  overflow-y: auto;
+  background: var(--color-white);
+  border-radius: 12px;
+  box-shadow: 0 16px 48px rgb(39 28 71 / 18%);
+  padding: 40px 48px 36px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 40px;
+}
+
+@media (max-width: 768px) {
+  .panel {
+    grid-template-columns: 1fr;
+    padding: 36px 24px 28px;
+    gap: 28px;
+    max-height: 92vh;
+  }
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.close:hover {
+  background: var(--color-neutral-100);
+  color: var(--color-text-primary);
+}
+
+.close:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+}
+
+.imageCol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+.image {
+  max-width: 100%;
+  max-height: min(400px, 50vh);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  text-align: left;
+}
+
+.title {
+  margin: 0 0 12px;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-20);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.prices {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.listPrice {
+  font-size: var(--font-size-14);
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+}
+
+.currentPrice {
+  font-size: var(--font-size-32);
+  font-weight: 700;
+  color: var(--color-neutral-700);
+  line-height: var(--line-height-tight);
+}
+
+.description {
+  margin: 0 0 12px;
+  font-size: var(--font-size-16);
+  font-weight: 400;
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+.detailsLink {
+  align-self: flex-start;
+  margin: 0 0 28px;
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-14);
+  font-weight: 500;
+  color: var(--color-primary-500);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.detailsLink:hover {
+  color: var(--color-brand-strong);
+}
+
+.detailsLink:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: auto;
+}
+
+.quantity {
+  display: inline-flex;
+  align-items: stretch;
+  border: 1px solid var(--color-border-tab);
+  border-radius: 6px;
+  background: var(--color-white);
+  overflow: hidden;
+}
+
+.qtyBtn {
+  width: 44px;
+  min-height: 48px;
+  border: none;
+  background: var(--color-white);
+  color: var(--color-text-secondary);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.qtyBtn:hover:not(:disabled) {
+  background: var(--color-neutral-100);
+}
+
+.qtyBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.qtyBtn:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: -2px;
+}
+
+.qtyValue {
+  min-width: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-16);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  border-inline: 1px solid var(--color-border-tab);
+}
+
+.buyButton {
+  flex: 1 1 180px;
+  min-width: min(100%, 206px);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}

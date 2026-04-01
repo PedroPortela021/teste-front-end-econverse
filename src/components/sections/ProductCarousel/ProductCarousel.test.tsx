@@ -1,8 +1,32 @@
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import type { Product } from '../../../types/product'
+import { useProducts } from '../../../data/hooks/useProducts'
 import carouselStyles from '../../ui/CarouselWrapper/CarouselWrapper.module.scss'
 import { ProductCarousel } from './ProductCarousel'
 import styles from './ProductCarousel.module.scss'
+
+vi.mock('../../../data/hooks/useProducts', () => ({
+  useProducts: vi.fn(),
+}))
+
+/** Dados estáveis para testes de UI (espelha a API sem rede). */
+const STUB_PRODUCTS: Product[] = [
+  {
+    productName: 'Iphone 11 PRO MAX BRANCO 1',
+    descriptionShort: 'Iphone 11 PRO MAX BRANCO 1',
+    photo:
+      'https://app.econverse.com.br/teste-front-end/junior/tecnologia/fotos-produtos/foto-iphone.png',
+    price: 150_00,
+  },
+  ...Array.from({ length: 9 }, (_, i) => ({
+    productName: `IPHONE STUB ${i + 2}`,
+    descriptionShort: `IPHONE STUB ${i + 2}`,
+    photo:
+      'https://app.econverse.com.br/teste-front-end/junior/tecnologia/fotos-produtos/foto-iphone.png',
+    price: 90_00,
+  })),
+]
 
 const TAB_LABELS = [
   'CELULAR',
@@ -15,6 +39,13 @@ const TAB_LABELS = [
 
 describe('ProductCarousel', () => {
   beforeEach(() => {
+    vi.mocked(useProducts).mockReturnValue({
+      products: STUB_PRODUCTS,
+      isLoading: false,
+      error: null,
+      refetch: vi.fn(),
+    })
+
     vi.stubGlobal(
       'ResizeObserver',
       class {
@@ -109,5 +140,64 @@ describe('ProductCarousel', () => {
 
     expect(screen.getByRole('button', { name: 'Ver itens anteriores' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Ver próximos itens' })).toBeInTheDocument()
+  })
+
+  it('Should open product modal when a card is clicked', async () => {
+    const user = userEvent.setup()
+    render(<ProductCarousel />)
+
+    const [firstCard] = screen.getAllByRole('article')
+    await user.click(within(firstCard).getByText('Iphone 11 PRO MAX BRANCO 1'))
+
+    expect(screen.getByRole('dialog')).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { level: 2, name: 'Iphone 11 PRO MAX BRANCO 1' }),
+    ).toBeInTheDocument()
+  })
+
+  it('Should show loading status while products are fetching', () => {
+    vi.mocked(useProducts).mockReturnValue({
+      products: [],
+      isLoading: true,
+      error: null,
+      refetch: vi.fn(),
+    })
+
+    render(<ProductCarousel />)
+
+    const status = screen.getByRole('status')
+    expect(status).toHaveTextContent('Carregando produtos…')
+    expect(screen.queryByRole('region', { name: 'Lista de produtos relacionados' })).not.toBeInTheDocument()
+  })
+
+  it('Should show error alert and call refetch on retry', async () => {
+    const user = userEvent.setup()
+    const refetch = vi.fn()
+    vi.mocked(useProducts).mockReturnValue({
+      products: [],
+      isLoading: false,
+      error: 'Falha de rede',
+      refetch,
+    })
+
+    render(<ProductCarousel />)
+
+    const alert = screen.getByRole('alert')
+    expect(alert).toHaveTextContent('Falha de rede')
+    await user.click(screen.getByRole('button', { name: 'Tentar novamente' }))
+    expect(refetch).toHaveBeenCalledTimes(1)
+  })
+
+  it('Should show empty message when API returns no products', () => {
+    vi.mocked(useProducts).mockReturnValue({
+      products: [],
+      isLoading: false,
+      error: null,
+      refetch: vi.fn(),
+    })
+
+    render(<ProductCarousel />)
+
+    expect(screen.getByText('Nenhum produto encontrado.')).toBeInTheDocument()
   })
 })

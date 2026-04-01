@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import type { Product } from '../../../types/product'
+import { useProducts } from '../../../data/hooks/useProducts'
 import { formatPriceBRLFromCents } from '../../../lib/formatPriceBRL'
+import { Button } from '../../ui/Button/Button'
 import { CarouselWrapper } from '../../ui/CarouselWrapper/CarouselWrapper'
 import { ProductCard } from '../../ui/ProductCard/ProductCard'
+import { ProductModal } from '../../ui/ProductModal/ProductModal'
 import styles from './ProductCarousel.module.scss'
 
 const RELATED_TABS = [
@@ -13,80 +16,6 @@ const RELATED_TABS = [
   'TVs',
   'Ver todos',
 ] as const
-
-/** Dados mockados espelhando a API; substituídos por fetch na integração. */
-const MOCK_PRODUCTS: Product[] = [
-  {
-    productName: 'Iphone 11 PRO MAX BRANCO 1',
-    descriptionShort: 'Iphone 11 PRO MAX BRANCO 1',
-    photo:
-      'https://app.econverse.com.br/teste-front-end/junior/tecnologia/fotos-produtos/foto-iphone.png',
-    price: 150_00,
-  },
-  {
-    productName: 'IPHONE 13 MINI 1',
-    descriptionShort: 'IPHONE 13 MINI 1',
-    photo:
-      'https://app.econverse.com.br/teste-front-end/junior/tecnologia/fotos-produtos/foto-iphone.png',
-    price: 90_00,
-  },
-  {
-    productName: 'Iphone 11 PRO MAX BRANCO 2',
-    descriptionShort: 'Iphone 11 PRO MAX BRANCO 2',
-    photo:
-      'https://app.econverse.com.br/teste-front-end/junior/tecnologia/fotos-produtos/foto-iphone.png',
-    price: 149_90,
-  },
-  {
-    productName: 'IPHONE 13 MINI 2',
-    descriptionShort: 'IPHONE 13 MINI 2',
-    photo:
-      'https://app.econverse.com.br/teste-front-end/junior/tecnologia/fotos-produtos/foto-iphone.png',
-    price: 120_00,
-  },
-  {
-    productName: 'Iphone 11 PRO MAX BRANCO 3',
-    descriptionShort: 'Iphone 11 PRO MAX BRANCO 3',
-    photo:
-      'https://app.econverse.com.br/teste-front-end/junior/tecnologia/fotos-produtos/foto-iphone.png',
-    price: 45_50,
-  },
-  {
-    productName: 'IPHONE 13 MINI 3',
-    descriptionShort: 'IPHONE 13 MINI 3',
-    photo:
-      'https://app.econverse.com.br/teste-front-end/junior/tecnologia/fotos-produtos/foto-iphone.png',
-    price: 380_00,
-  },
-  {
-    productName: 'Iphone 11 PRO MAX BRANCO 4',
-    descriptionShort: 'Iphone 11 PRO MAX BRANCO 4',
-    photo:
-      'https://app.econverse.com.br/teste-front-end/junior/tecnologia/fotos-produtos/foto-iphone.png',
-    price: 420_00,
-  },
-  {
-    productName: 'IPHONE 13 MINI 4',
-    descriptionShort: 'IPHONE 13 MINI 4',
-    photo:
-      'https://app.econverse.com.br/teste-front-end/junior/tecnologia/fotos-produtos/foto-iphone.png',
-    price: 5_20,
-  },
-  {
-    productName: 'Iphone 11 PRO MAX BRANCO 5',
-    descriptionShort: 'Iphone 11 PRO MAX BRANCO 5',
-    photo:
-      'https://app.econverse.com.br/teste-front-end/junior/tecnologia/fotos-produtos/foto-iphone.png',
-    price: 1499_90,
-  },
-  {
-    productName: 'IPHONE 13 MINI 5',
-    descriptionShort: 'IPHONE 13 MINI 5',
-    photo:
-      'https://app.econverse.com.br/teste-front-end/junior/tecnologia/fotos-produtos/foto-iphone.png',
-    price: 1000_00,
-  },
-]
 
 function listPriceFromCurrent(cents: number): number {
   return Math.round(cents * 1.08)
@@ -99,6 +28,9 @@ function installmentLabelFor(cents: number): string {
 
 export function ProductCarousel() {
   const [activeTab, setActiveTab] = useState<(typeof RELATED_TABS)[number]>(RELATED_TABS[0])
+  const [modalProduct, setModalProduct] = useState<Product | null>(null)
+  const [modalKey, setModalKey] = useState(0)
+  const { products, isLoading, error, refetch } = useProducts()
 
   return (
     <section className={styles.section} aria-labelledby="related-products-heading">
@@ -129,19 +61,55 @@ export function ProductCarousel() {
           })}
         </div>
 
-        <CarouselWrapper
-          className={styles.carousel}
-          ariaLabel="Lista de produtos relacionados"
-        >
-          {MOCK_PRODUCTS.map((product) => (
-            <ProductCard
-              key={product.productName}
-              product={product}
-              listPriceCents={listPriceFromCurrent(product.price)}
-              installmentLabel={installmentLabelFor(product.price)}
-            />
-          ))}
-        </CarouselWrapper>
+        {isLoading ? (
+          <p className={styles.feedback} role="status" aria-live="polite">
+            Carregando produtos…
+          </p>
+        ) : null}
+
+        {error ? (
+          <div className={styles.feedback} role="alert">
+            <p className={styles.feedbackMessage}>{error}</p>
+            <Button type="button" variant="primary" onClick={refetch}>
+              Tentar novamente
+            </Button>
+          </div>
+        ) : null}
+
+        {!isLoading && !error && products.length === 0 ? (
+          <p className={styles.feedback} role="status">
+            Nenhum produto encontrado.
+          </p>
+        ) : null}
+
+        {!isLoading && !error && products.length > 0 ? (
+          <CarouselWrapper
+            className={styles.carousel}
+            ariaLabel="Lista de produtos relacionados"
+          >
+            {products.map((product, index) => (
+              <ProductCard
+                key={`${product.productName}-${index}`}
+                product={product}
+                listPriceCents={listPriceFromCurrent(product.price)}
+                installmentLabel={installmentLabelFor(product.price)}
+                onOpen={() => {
+                  setModalProduct(product)
+                  setModalKey((k) => k + 1)
+                }}
+              />
+            ))}
+          </CarouselWrapper>
+        ) : null}
+
+        <ProductModal
+          key={modalKey}
+          product={modalProduct}
+          listPriceCents={
+            modalProduct ? listPriceFromCurrent(modalProduct.price) : undefined
+          }
+          onClose={() => setModalProduct(null)}
+        />
       </div>
     </section>
   )

@@ -84,6 +84,29 @@ describe('ProductCard', () => {
     expect(onBuy).toHaveBeenCalledTimes(1)
   })
 
+  it('Should call onOpen when card is activated and not propagate Comprar when onBuy is set', async () => {
+    const user = userEvent.setup()
+    const onOpen = vi.fn()
+    const onBuy = vi.fn()
+    render(<ProductCard product={baseProduct} onOpen={onOpen} onBuy={onBuy} />)
+
+    await user.click(screen.getByRole('button', { name: 'Comprar' }))
+    expect(onBuy).toHaveBeenCalledTimes(1)
+    expect(onOpen).not.toHaveBeenCalled()
+
+    await user.click(screen.getByText(baseProduct.descriptionShort))
+    expect(onOpen).toHaveBeenCalledTimes(1)
+  })
+
+  it('Should call onOpen when Comprar is clicked if onBuy is omitted', async () => {
+    const user = userEvent.setup()
+    const onOpen = vi.fn()
+    render(<ProductCard product={baseProduct} onOpen={onOpen} />)
+
+    await user.click(screen.getByRole('button', { name: 'Comprar' }))
+    expect(onOpen).toHaveBeenCalledTimes(1)
+  })
+
   it('Should use article root with card class', () => {
     const { container } = render(<ProductCard product={baseProduct} />)
     const article = container.querySelector('article')
