@@ -1,5 +1,5 @@
 import { SectionDivider } from '../../../ui/SectionDivider/SectionDivider'
-import crownIcon from '../../../../assets/CrownSimple.png'
+import crownIcon from '../../../../assets/icon-crown-simple.png'
 import styles from './NavMenu.module.scss'
 
 const menuItems = [

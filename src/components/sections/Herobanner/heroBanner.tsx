@@ -1,4 +1,4 @@
-import bannerImage from '../../../assets/banner.png'
+import bannerImage from '../../../assets/img-banner.png'
 import { Button } from '../../ui/Button/Button'
 import styles from './HeroBanner.module.scss'
 

@@ -9,7 +9,7 @@ describe('Navbar', () => {
     const logoImage = within(logoLink).getByRole('img', { name: 'Econverse' })
 
     expect(logoImage).toBeInTheDocument()
-    expect(logoImage).toHaveAttribute('src', expect.stringContaining('logo.png'))
+    expect(logoImage).toHaveAttribute('src', expect.stringContaining('img-logo.png'))
   })
 
   it('Should render the search form with input and button', () => {

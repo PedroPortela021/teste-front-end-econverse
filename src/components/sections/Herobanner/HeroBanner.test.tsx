@@ -34,7 +34,7 @@ describe('HeroBanner', () => {
     const bannerImg = container.querySelector('img')
     expect(bannerImg).toBeInTheDocument()
     expect(bannerImg).toHaveAttribute('alt', '')
-    expect(bannerImg).toHaveAttribute('src', expect.stringContaining('banner.png'))
+    expect(bannerImg).toHaveAttribute('src', expect.stringContaining('img-banner.png'))
   })
 
   it('Should render primary CTA button', () => {

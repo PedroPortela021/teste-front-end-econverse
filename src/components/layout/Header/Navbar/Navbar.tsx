@@ -1,6 +1,6 @@
 import styles from './Navbar.module.scss'
 import { Input } from '../../../ui/Input/Input'
-import logoImage from '../../../../assets/logo.png'
+import logoImage from '../../../../assets/img-logo.png'
 
 export function Navbar() {
   return (
