@@ -1,0 +1,116 @@
+.section {
+  width: 100%;
+  padding: 40px 0 48px;
+}
+
+.inner {
+  --carousel-pad-inline: 60px;
+
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  /* Espaço lateral para título/abas e para os chevrons fora da faixa rolável. */
+  padding: 0 var(--carousel-pad-inline);
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.titleLine {
+  flex: 1;
+  height: 1px;
+  background: var(--color-border-tab);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-32);
+  font-weight: 700;
+  color: var(--color-brand-primary);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto 8px;
+  border: 1px solid var(--color-border-tab);
+  background: var(--color-white);
+  box-sizing: border-box;
+}
+
+@media (max-width: 720px) {
+  .tabs {
+    grid-template-columns: repeat(6, minmax(72px, 1fr));
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+  }
+}
+
+.tab {
+  appearance: none;
+  margin: 0;
+  border: none;
+  border-right: 1px solid var(--color-border-tab);
+  border-radius: 0;
+  background: var(--color-white);
+  box-sizing: border-box;
+  height: 40px;
+  min-height: 40px;
+  padding: 0 8px;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-16);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--color-text-tab);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.2s ease, font-weight 0.2s ease;
+}
+
+.tab:last-child {
+  border-right: none;
+}
+
+.tab:hover {
+  color: var(--color-neutral-700);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: -2px;
+  z-index: 1;
+}
+
+.tabActive {
+  font-weight: 700;
+  color: var(--color-brand-primary);
+}
+
+.tabActive:hover {
+  color: var(--color-brand-primary);
+}
+
+.carousel {
+  /* Ocupa a largura total do container (ignora o padding horizontal do .inner). */
+  margin-inline: calc(-1 * var(--carousel-pad-inline));
+  width: calc(100% + 2 * var(--carousel-pad-inline));
+  max-width: none;
+  box-sizing: border-box;
+  padding: 0;
+}

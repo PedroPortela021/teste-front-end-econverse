@@ -16,13 +16,19 @@
   --line-height-tight: 1.2;
   --line-height-normal: 1.5;
 
+  /* Shadows */
+  --shadow-surface: 0 4px 11px 0 rgba(0, 0, 0, 0.13);
+  --shadow-card: 0 4px 4px 0 rgba(0, 0, 0, 0.13);
+
   /* Colors */
   --color-primary-500: #3442b5;
   --color-primary-700: #3019b2;
   --color-accent-400: #f7ca11;
   --color-neutral-900: #271c47;
   --color-neutral-700: #3f3f40;
+  --color-neutral-600: #3b3b3b;
   --color-neutral-400: #9f9f9f;
+  --color-neutral-300: #bdbdbd;
   --color-neutral-100: #f4f4f4;
   --color-surface-input: #f6f5f2;
   --color-white: #ffffff;
@@ -37,6 +43,8 @@
   --color-text-muted: var(--color-neutral-400);
   --color-text-on-dark: var(--color-white);
   --color-border-default: var(--color-neutral-400);
+  --color-text-tab: var(--color-neutral-600);
+  --color-border-tab: var(--color-neutral-300);
   --color-brand-primary: var(--color-primary-500);
   --color-brand-strong: var(--color-primary-700);
 }
