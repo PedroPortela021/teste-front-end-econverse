@@ -1,0 +1,32 @@
+# Produção: build da SPA + Nginx na porta 8080
+#   docker compose up --build
+#
+# Variável da API no build (opcional):
+#   VITE_PRODUCTS_API_URL=https://... docker compose build --build-arg VITE_PRODUCTS_API_URL
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_PRODUCTS_API_URL: /api/products.json
+    ports:
+      - '8080:80'
+    restart: unless-stopped
+
+  # Desenvolvimento com hot reload (perfil opcional):
+  #   docker compose --profile dev up dev
+  dev:
+    profiles:
+      - dev
+    image: node:22-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - '5173:5173'
+    command: sh -c "npm ci && npm run dev -- --host 0.0.0.0"
+    environment:
+      # Garante proxy /api no Vite igual ao host local
+      - VITE_PRODUCTS_API_URL=/api/products.json
