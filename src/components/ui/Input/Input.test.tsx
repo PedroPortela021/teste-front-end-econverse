@@ -19,6 +19,14 @@ describe('Input', () => {
     expect(input).toHaveClass(styles.inputSecondary)
   })
 
+  it('Should apply light variant when provided', () => {
+    render(<Input variant="light" placeholder="Nome" />)
+
+    const input = screen.getByPlaceholderText('Nome')
+    expect(input).toHaveClass(styles.inputBase)
+    expect(input).toHaveClass(styles.inputLight)
+  })
+
   it('Should forward native input attributes', () => {
     render(<Input id="search-products" type="search" defaultValue="notebook" />)
 

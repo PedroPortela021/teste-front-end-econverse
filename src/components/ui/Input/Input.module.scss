@@ -14,7 +14,7 @@
 }
 
 .inputPrimary::placeholder {
-  color:var(---color-neutral-400);
+  color: var(--color-text-muted);
 }
 
 .inputSecondary {
@@ -22,4 +22,21 @@
   background: var(--color-white);
   color: var(--color-text-primary);
   padding: 0 20px;
+}
+
+.inputSecondary::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* Campos claros (ex.: newsletter em fundo escuro). */
+.inputLight {
+  height: 48px;
+  background: var(--color-white);
+  color: var(--color-text-primary);
+  padding: 0 20px;
+  border: 1px solid var(--color-border-tab);
+}
+
+.inputLight::placeholder {
+  color: var(--color-text-muted);
 }

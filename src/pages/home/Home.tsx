@@ -1,3 +1,5 @@
+import { NewsletterBar } from '../../components/layout/Footer/NewsletterBar'
+import { SiteFooter } from '../../components/layout/Footer/SiteFooter'
 import { NavMenu } from '../../components/layout/Header/NavMenu/NavMenu'
 import { Navbar } from '../../components/layout/Header/Navbar/Navbar'
 import { TopBar } from '../../components/layout/Header/TopBar/TopBar'
@@ -23,10 +25,9 @@ export function Home() {
       <CategoryBar />
       <ProductCarousel />
       <PartnersSection />
-      <ProductCarousel />
-      <PartnersSection />
       <BrandsSection />
-      <ProductCarousel />
+      <NewsletterBar />
+      <SiteFooter />
     </main>
   )
 }
