@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /desing
+
+# Em produção, após `npm run build` com VITE_SITE_URL, o script gera dist/sitemap.xml e sobrescreve este arquivo com a linha Sitemap.

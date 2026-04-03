@@ -1,3 +1,4 @@
+import { Seo } from '../../components/seo/Seo'
 import styles from './DesignTokens.module.scss'
 
 const colorTokens = [
@@ -23,6 +24,11 @@ const fontScale = [
 export function DesignTokensPage() {
   return (
     <main className={styles.styleGuide}>
+      <Seo
+        title="Design tokens"
+        description="Referência de cores e tipografia (Poppins) utilizadas no projeto Econverse."
+        noIndex
+      />
       <header>
         <p className={styles.kicker}>Design tokens</p>
         <h1>Cores e tipografia do projeto</h1>

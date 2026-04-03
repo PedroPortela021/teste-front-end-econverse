@@ -14,6 +14,10 @@ COPY . .
 ARG VITE_PRODUCTS_API_URL=/api/products.json
 ENV VITE_PRODUCTS_API_URL=$VITE_PRODUCTS_API_URL
 
+# Opcional: URL pública (https://…) para canonical/OG no cliente e sitemap.xml no build.
+ARG VITE_SITE_URL=
+ENV VITE_SITE_URL=$VITE_SITE_URL
+
 RUN npm run build
 
 # --- Servir arquivos estáticos ---

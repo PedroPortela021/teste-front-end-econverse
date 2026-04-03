@@ -1,3 +1,4 @@
+import { Seo } from '../../components/seo/Seo'
 import { NewsletterBar } from '../../components/layout/Footer/NewsletterBar'
 import { SiteFooter } from '../../components/layout/Footer/SiteFooter'
 import { NavMenu } from '../../components/layout/Header/NavMenu/NavMenu'
@@ -13,6 +14,7 @@ import styles from './Home.module.scss'
 export function Home() {
   return (
     <main className={styles.home}>
+      <Seo />
       <header>
         <TopBar />
         <Navbar />
