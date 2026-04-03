@@ -33,14 +33,14 @@ export function NewsletterBar() {
                 placeholder="Digite seu e-mail"
               />
             </div>
+            <Button type="submit" variant="primary" className={styles.submit}>
+              Inscrever
+            </Button>
           </div>
           <label className={styles.checkboxRow}>
             <input className={styles.checkbox} type="checkbox" name="terms" required />
             <span>Aceito os termos e condições</span>
           </label>
-          <Button type="submit" variant="primary" className={styles.submit}>
-            Inscrever
-          </Button>
         </form>
       </div>
     </section>

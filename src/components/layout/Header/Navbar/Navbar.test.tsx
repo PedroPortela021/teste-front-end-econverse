@@ -32,7 +32,7 @@ describe('Navbar', () => {
   it('Should hide decorative icons from assistive technology', () => {
     const { container } = render(<Navbar />)
 
-    const decorativeIcons = container.querySelectorAll('svg[aria-hidden="true"]')
+    const decorativeIcons = container.querySelectorAll('img[aria-hidden="true"]')
     expect(decorativeIcons).toHaveLength(5)
   })
 })
